@@ -1,0 +1,173 @@
+{
+    "info": {
+        "_postman_id": "32a25660-d85e-404f-98c7-e511762ee81f",
+        "name": "taskManger",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "store",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/tasks?title=title e e&description=ddeeeddeddeed&priority=4",
+                    "query": [
+                        {
+                            "key": "title",
+                            "value": "title e e"
+                        },
+                        {
+                            "key": "description",
+                            "value": "ddeeeddeddeed"
+                        },
+                        {
+                            "key": "priority",
+                            "value": "4"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "api",
+                        "tasks"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8000"
+                },
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "index",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/tasks",
+                    "path": [
+                        "api",
+                        "tasks"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8000"
+                }
+            }
+        },
+        {
+            "name": "update",
+            "request": {
+                "method": "PUT",
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/tasks/2?description=crud 22222222222&priority=5",
+                    "query": [
+                        {
+                            "key": "title",
+                            "value": "new title 2 n",
+                            "disabled": true
+                        },
+                        {
+                            "key": "description",
+                            "value": "crud 22222222222"
+                        },
+                        {
+                            "key": "priority",
+                            "value": "5"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "api",
+                        "tasks",
+                        "2"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8000"
+                },
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "show",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/tasks/6",
+                    "path": [
+                        "api",
+                        "tasks",
+                        "6"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8000"
+                },
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "delete",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://127.0.0.1:8000/api/tasks/6",
+                    "path": [
+                        "api",
+                        "tasks",
+                        "6"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "127",
+                        "0",
+                        "0",
+                        "1"
+                    ],
+                    "port": "8000"
+                },
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json"
+                    }
+                ]
+            }
+        }
+    ]
+}
