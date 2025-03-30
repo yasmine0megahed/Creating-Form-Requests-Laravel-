@@ -51,5 +51,34 @@ class TaskController extends Controller
             204
         );
     }
+    public function getTaskUser($id)
+    {
+        $user = Task::findOrFail($id)->user;
+        $profile = Task::findOrFail($id)->user->profile;
 
+        return response()->json(
+            [
+                'user' => $user,
+                'profile' => $profile
+            ],
+            200
+        );
+    }
+    public function addCategoryToTask($taskId, Request $request)
+    {
+        $task = Task::findOrFail($taskId);
+        $task->categories()->attach($request->category_id);
+        return response()->json(
+            'category added successfully',
+            200
+        );
+    }
+    public function getTaskCategory($taskId)
+    {
+        $categories = Task::findOrFail($taskId)->categories;
+        return response()->json(
+            $categories,
+            200
+        );
+    }
 }

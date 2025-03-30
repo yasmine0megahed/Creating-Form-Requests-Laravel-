@@ -44,4 +44,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function profile(){
+        return $this->hasOne(Profile::class);
+    }
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
 }

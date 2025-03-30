@@ -24,7 +24,8 @@ class UpdateTaskRequest extends FormRequest
         return [
             'title' => 'sometimes|string|max:40|min:5',
             'description' => 'sometimes|string|min:10|max:255',
-            'priority' => 'sometimes|integer|min:1|max:5'
+            'priority' => 'sometimes|integer|min:1|max:5',
+            'user_id' => 'sometimes|integer|exists:users,id'
         ];
     }
     public function messages(): array
