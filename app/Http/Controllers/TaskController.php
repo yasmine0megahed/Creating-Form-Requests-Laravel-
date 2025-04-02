@@ -23,6 +23,13 @@ class TaskController extends Controller
             200
         );
     }
+    public function getTasksByPeriority(){
+        $tasks = Auth::user()->tasks()->orderByRaw('FIELD(priority, "high", "medium", "low")')->get();
+        return response()->json(
+            $tasks,
+            200
+        );
+    }
     public function getAllTasks(){
         $tasks = Task::all();
         return response()->json(

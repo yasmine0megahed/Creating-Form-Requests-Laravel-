@@ -22,7 +22,7 @@ Route::post('login', [UserController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('tasks', TaskController::class);
     Route::apiResource('tasks', TaskController::class);
-
+Route::get('task/priority', [TaskController::class, 'getTasksByPeriority']);
 
     Route::post('logout', [UserController::class, 'logout']);
 });
