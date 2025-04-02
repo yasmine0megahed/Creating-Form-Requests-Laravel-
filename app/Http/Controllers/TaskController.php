@@ -6,11 +6,24 @@ use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
     public function index()
     {
+        $tasks = Auth::user()->tasks;
+        return response()->json(
+            $tasks,
+            200
+        );
+    }
+    public function getAllTasks(){
         $tasks = Task::all();
         return response()->json(
             $tasks,
@@ -19,7 +32,10 @@ class TaskController extends Controller
     }
     public function store(StoreTaskRequest $request)
     {
-        $task = Task::create($request->validated());
+        $user_id = Auth::user()->id;
+        $validatedData = $request->validated();
+        $validatedData['user_id'] = $user_id;
+        $task = Task::create($validatedData);
         return response()->json(
             $task,
             201
@@ -35,7 +51,13 @@ class TaskController extends Controller
     }
     public function update(UpdateTaskRequest $request, $id)
     {
+        $user_id=Auth::user()->id;
         $task = Task::findOrFail($id);
+        if($task->user_id!=$user_id){
+            return response()->json([
+                "message" => "You do not have permission to update this task."
+            ], 403);
+        }
         $task->update($request->validated());
         return response()->json(
             $task,
@@ -44,7 +66,13 @@ class TaskController extends Controller
     }
     public function destroy($id)
     {
+        $user_id=Auth::user()->id;
         $task = Task::findOrFail($id);
+        if($task->user_id!=$user_id){
+            return response()->json([
+                "message" => "You do not have permission to delete this task."
+            ], 403);
+        }
         $task->delete();
         return response()->json(
             null,
