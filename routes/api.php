@@ -49,3 +49,9 @@ Route::get('user/{id}/tasks', [UserController::class, 'getTasks']);
 
 Route::get('task/all', [TaskController::class, 'getAllTasks'])->middleware('CheckUser', 'auth:sanctum');
 
+
+Route::post('task/{id}/favorites', [TaskController::class, 'addToFavorites'])->middleware('auth:sanctum');
+
+
+
+

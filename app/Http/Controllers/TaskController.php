@@ -116,4 +116,14 @@ class TaskController extends Controller
             200
         );
     }
+
+    public function addToFavorites($taskId){
+        Task::findOrFail($taskId);
+        Auth::user()->favoraiteTasks()->syncWithoutDetaching($taskId);
+        return response()->json(
+            [
+                "message" => "Task added to favorites"],
+            200
+            );
+    }
 }
