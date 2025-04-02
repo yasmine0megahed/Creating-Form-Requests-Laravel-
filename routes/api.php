@@ -38,7 +38,7 @@ Route::prefix('tasks')->group(function () {
 });
 
 
-Route::apiResource('profiles', ProfileController::class);
+Route::apiResource('profiles', ProfileController::class)->middleware('auth:sanctum');
 
 Route::apiResource('categories', CategoryController::class);
 

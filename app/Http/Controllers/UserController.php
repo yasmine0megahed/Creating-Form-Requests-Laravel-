@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -42,7 +43,11 @@ class UserController extends Controller
         'message' => 'success', 
         'access_token' => $token, 
         'token_type' => 'Bearer',
-        'user' => $user], 200);
+        // 'user' => new UserResource($user)
+        'user' => new UserResource($user)
+        ]
+        
+        , 200);
     }
     public function logout(Request $request)
     {
