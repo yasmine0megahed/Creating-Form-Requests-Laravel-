@@ -126,4 +126,13 @@ class TaskController extends Controller
             200
             );
     }
+    public function removeFavorites($taskId){
+        Task::findOrFail($taskId);
+        Auth::user()->favoraiteTasks()->detach($taskId);
+        return response()->json(
+            [
+                "message" => "Task REMOVED to favorites"],
+            200
+            );
+    }
 }
